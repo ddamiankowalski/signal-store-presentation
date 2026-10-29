@@ -1,12 +1,10 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component } from '@angular/core';
+import { Form } from './form/form';
 
 @Component({
-  imports: [RouterOutlet],
   selector: 'app-root',
-  styleUrl: './app.css',
-  templateUrl: './app.html',
+  templateUrl: 'app.html',
+  imports: [Form],
+  host: { class: 'block min-h-screen bg-surface text-on-surface' },
 })
-export class App {
-  protected readonly title = signal('ngrx-presentation');
-}
+export class App {}

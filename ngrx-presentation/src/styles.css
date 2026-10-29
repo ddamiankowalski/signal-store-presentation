@@ -1,3 +1,38 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import 'tailwindcss';
+
+@theme {
+  /* Typografia */
+  --font-sans: 'Geist', ui-sans-serif, system-ui, sans-serif;
+
+  /* Kolory Akcentu & Handlu (Trading / Actions) */
+  --color-primary: #00e5a0; /* Główny kolor akcentu, Kup/Long, przycisk CTA, wartości zysku/danych */
+  --color-primary-hover: #00d394; /* Primary po najechaniu (hover) */
+  --color-primary-active: #00c087; /* Primary po wciśnięciu (active) */
+  --color-on-primary: #051424; /* Kolor tekstu/ikon na głównym przycisku CTA */
+  --color-primary-container: rgba(0, 229, 160, 0.15); /* Półprzezroczyste tło akcentu */
+
+  --color-sell-short: #ff4d6d; /* Sprzedaj / Short (czerwień tradingowa) */
+  --color-on-sell-short: #ffffff; /* Tekst na przycisku Sprzedaj */
+
+  --color-tertiary: #38bdf8; /* Błękitny akcent ikon (np. ikona portfela Dostępne środki) */
+
+  /* Kolory Tła & Warstw (Surfaces / Dark Theme) */
+  --color-surface: #051424; /* Główne tło ekranu / canvas */
+  --color-surface-dim: #030d18; /* Najciemniejsze tło / głęboki cień */
+  --color-surface-container-lowest: #010f1f; /* Tło w zagłębieniach / polach tekstowych */
+  --color-surface-container-low: #09192b; /* Tło paneli i sekcji */
+  --color-surface-container: #0d1e31; /* Karty, tło formularza (np. sekcja Dostępne środki) */
+  --color-surface-container-high: #15273c; /* Kontenery pól input, ikonek i kafelków kalkulacji */
+  --color-surface-container-highest: #1e334d; /* Aktywne/podświetlone elementy, przyciski +/- */
+
+  /* Kolory Tekstu (Typography & Content) */
+  --color-on-surface: #ffffff; /* Główny tekst, wprowadzane liczby, nagłówki */
+  --color-on-surface-variant: #94a3b8; /* Etykiety pól, drugorzędny tekst (np. "Wartość zlecenia") */
+  --color-text-muted: #64748b; /* Przygaszone opisy (np. "Natychmiastowa realizacja...") */
+
+  /* Obramowania & Linie (Borders / Dividers) */
+  --color-outline: #22374e; /* Standardowe ramki i linie podziału */
+  --color-outline-variant: #132437; /* Delikatne wewnętrzne separatory */
+}
