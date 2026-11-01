@@ -1,7 +1,7 @@
 <app-tabs [options]="tabs" [value]="form.selectedTab()" (valueChange)="onTab($event)" />
 
 <app-field label="Wartość zlecenia" icon="lucideEdit" inputId="price">
-  <app-number-input inputId="price" />
+  <app-form-input />
   <app-select [options]="options" [value]="form.selectedType()" />
 </app-field>
 
@@ -9,11 +9,7 @@
   <app-info-row icon="lucideWallet" label="Dostępne środki" unit="USD">1200</app-info-row>
   <app-info-row icon="lucideTrendingUpDown" label="Ostatnia cena">0.00</app-info-row>
 
-  <app-stat-grid>
-    <app-stat label="Cena">0.00</app-stat>
-    <app-stat label="Zysk (USD)">0.00</app-stat>
-    <app-stat label="Procent (%)">0.00</app-stat>
-  </app-stat-grid>
+  <app-stat-grid [price]="0" [profit]="0" [percent]="0" />
 </app-panel>
 
 <button appButton icon="lucideCircleDollarSign">Złóż zlecenie kupna</button>

@@ -1,8 +1,8 @@
-import { Component, input, model, output } from '@angular/core';
+import { Component, model, output } from '@angular/core';
 import { NgIcon } from '@ng-icons/core';
 
 @Component({
-  selector: 'app-number-input',
+  selector: 'app-form-input',
   host: { class: 'flex flex-1' },
   imports: [NgIcon],
   template: `
@@ -15,7 +15,7 @@ import { NgIcon } from '@ng-icons/core';
     </button>
 
     <input
-      [id]="inputId()"
+      id="price"
       [value]="value()"
       (input)="onInput($event)"
       type="number"
@@ -31,12 +31,7 @@ import { NgIcon } from '@ng-icons/core';
     </button>
   `,
 })
-export class NumberInput {
-  /**
-   * Id of the input
-   */
-  public inputId = input<string>();
-
+export class FormInput {
   /**
    * Current value
    */

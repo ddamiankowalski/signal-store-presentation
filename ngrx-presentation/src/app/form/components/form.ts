@@ -3,18 +3,17 @@ import { FormStore } from '../store/form.store';
 import { Select, SelectOption } from './select/select';
 import { TabOption, Tabs } from './tabs/tabs';
 import { Field } from './field/field';
-import { NumberInput } from './number-input/number-input';
+import { FormInput } from './form-input/form-input';
 import { Panel } from './panel/panel';
 import { InfoRow } from './info-row/info-row';
 import { StatGrid } from './stat-grid/stat-grid';
-import { Stat } from './stat/stat';
 import { Button } from './button/button';
 
 @Component({
   selector: 'app-form',
   host: { class: 'flex flex-col gap-4 w-full' },
   templateUrl: 'form.html',
-  imports: [Tabs, Field, NumberInput, Select, Panel, InfoRow, StatGrid, Stat, Button],
+  imports: [Tabs, Field, FormInput, Select, Panel, InfoRow, StatGrid, Button],
   providers: [FormStore],
 })
 export class Form {
