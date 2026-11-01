@@ -1,127 +1,19 @@
-<section class="flex flex-col gap-4 w-full">
-  <div role="tablist" class="flex gap-2 bg-surface-container rounded-xl">
-    @let tab = form.selectedTab();
+<app-tabs [options]="tabs" [value]="form.selectedTab()" (valueChange)="onTab($event)" />
 
-    <button
-      (click)="onTab('LONG')"
-      aria-label="Kup / Long"
-      role="tab"
-      class="flex justify-center gap-2 items-center focus-visible:outline-4 focus-visible:outline-primary/50 w-full flex-1 cursor-pointer font-semibold text-base sm:text-lg text-nowrap transition-colors py-2 rounded-lg"
-      [ngClass]="{
-        'text-on-primary bg-primary hover:bg-primary-hover active:bg-primary-active':
-          tab === 'LONG',
-        'text-on-surface-variant': tab !== 'LONG',
-      }"
-    >
-      <ng-icon name="lucideTrendingUp" size="18" />
-      <span class="hidden sm:inline">Kup / Long</span>
-    </button>
-    <button
-      (click)="onTab('SHORT')"
-      aria-label="Sprzedaj / Short"
-      role="tab"
-      class="flex justify-center gap-2 items-center focus-visible:outline-4 focus-visible:outline-primary/50 w-full flex-1 cursor-pointer font-semibold text-base sm:text-lg text-nowrap transition-colors py-2 rounded-lg"
-      [ngClass]="{
-        'text-on-primary bg-primary hover:bg-primary-hover active:bg-primary-active':
-          tab === 'SHORT',
-        'text-on-surface-variant': tab !== 'SHORT',
-      }"
-    >
-      <ng-icon name="lucideTrendingDown" size="18" />
-      <span class="hidden sm:inline">Sprzedaj / Short</span>
-    </button>
-  </div>
+<app-field label="Wartość zlecenia" icon="lucideEdit" inputId="price">
+  <app-number-input inputId="price" />
+  <app-select [options]="options" [value]="form.selectedType()" />
+</app-field>
 
-  <div class="flex flex-col text-on-surface-variant text-sm font-semibold">
-    <label for="price" class="flex items-center gap-1 mb-2">
-      <ng-icon name="lucideEdit" size="14" />
-      Wartość zlecenia</label
-    >
+<app-panel>
+  <app-info-row icon="lucideWallet" label="Dostępne środki" unit="USD">1200</app-info-row>
+  <app-info-row icon="lucideTrendingUpDown" label="Ostatnia cena">1.52420</app-info-row>
 
-    <div class="flex flex-col sm:flex-row gap-2 w-full rounded-xl bg-surface-container p-2">
-      <div class="flex flex-1">
-        <button
-          class="flex items-center justify-center rounded-lg hover:bg-surface-container-highest focus-visible:outline-4 focus-visible:outline-surface-container-highest cursor-pointer p-4 bg-surface-container-high"
-        >
-          <ng-icon name="lucideMinus" size="18" />
-        </button>
+  <app-stat-grid>
+    <app-stat label="Cena">1.52420</app-stat>
+    <app-stat label="Zysk (USD)">0.00</app-stat>
+    <app-stat label="Procent (%)">0.00</app-stat>
+  </app-stat-grid>
+</app-panel>
 
-        <input
-          id="price"
-          type="number"
-          class="min-w-0 flex-1 appearance-none bg-transparent text-left px-4 text-lg outline-none transition-colors hover:text-on-surface focus:text-on-surface"
-        />
-
-        <button
-          class="flex items-center justify-center rounded-lg hover:bg-surface-container-highest focus-visible:outline-4 focus-visible:outline-surface-container-highest cursor-pointer p-4 bg-surface-container-high"
-        >
-          <ng-icon name="lucidePlus" size="18" />
-        </button>
-      </div>
-
-      <app-select [options]="options" [value]="form.selectedType()" />
-    </div>
-  </div>
-
-  <section class="flex gap-2 flex-col justify-between w-full p-4 rounded-xl bg-surface-container">
-    <div class="flex justify-between gap-2">
-      <div class="flex items-center">
-        <div
-          class="flex items-center justify-center p-4 rounded-lg bg-surface-container-high text-primary"
-        >
-          <ng-icon name="lucideWallet" size="18" />
-        </div>
-
-        <p class="text-on-surface-variant mx-2 flex items-center">Dostępne środki</p>
-      </div>
-
-      <div class="flex items-center">
-        <p>1200 <span class="text-on-surface-variant">USD</span></p>
-      </div>
-    </div>
-
-    <div class="h-px bg-outline-variant"></div>
-
-    <div class="flex justify-between gap-2">
-      <div class="flex items-center">
-        <div
-          class="flex items-center justify-center p-4 rounded-lg bg-surface-container-high text-primary"
-        >
-          <ng-icon name="lucideTrendingUpDown" size="18" />
-        </div>
-
-        <p class="text-on-surface-variant mx-2 flex items-center">Ostatnia cena</p>
-      </div>
-
-      <div class="flex items-center">
-        <p>1.52420</p>
-      </div>
-    </div>
-
-    <div class="h-px bg-outline-variant"></div>
-
-    <div class="grid grid-cols-3 gap-2 font-semibold">
-      <div class="flex flex-col gap-1 rounded-lg bg-surface-container-low p-3">
-        <p class="text-sm font-semibold text-on-surface-variant">Cena</p>
-        <p class="text-primary">1.52420</p>
-      </div>
-
-      <div class="flex flex-col gap-1 rounded-lg bg-surface-container-low p-3">
-        <p class="text-sm font-semibold text-on-surface-variant">Zysk (USD)</p>
-        <p class="text-primary">0.00</p>
-      </div>
-
-      <div class="flex flex-col gap-1 rounded-lg bg-surface-container-low p-3">
-        <p class="text-sm font-semibold text-on-surface-variant">Procent (%)</p>
-        <p class="text-primary">0.00</p>
-      </div>
-    </div>
-  </section>
-
-  <button
-    class="flex items-center justify-center gap-2 focus-visible:outline-4 focus-visible:outline-primary/50 w-full font-semibold text-lg cursor-pointer bg-primary hover:bg-primary-hover active:bg-primary-active transition-colors px-4 py-4 text-on-primary rounded-xl"
-  >
-    <ng-icon name="lucideCircleDollarSign" size="18" />
-    Złóż zlecenie kupna
-  </button>
-</section>
+<button appButton icon="lucideCircleDollarSign">Złóż zlecenie kupna</button>

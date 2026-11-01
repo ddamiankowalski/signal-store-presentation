@@ -1,17 +1,29 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormStore } from '../store/form.store';
-import { NgClass } from '@angular/common';
-import { NgIcon } from '@ng-icons/core';
 import { Select, SelectOption } from './select/select';
+import { TabOption, Tabs } from './tabs/tabs';
+import { Field } from './field/field';
+import { NumberInput } from './number-input/number-input';
+import { Panel } from './panel/panel';
+import { InfoRow } from './info-row/info-row';
+import { StatGrid } from './stat-grid/stat-grid';
+import { Stat } from './stat/stat';
+import { Button } from './button/button';
 
 @Component({
   selector: 'app-form',
+  host: { class: 'flex flex-col gap-4 w-full' },
   templateUrl: 'form.html',
-  imports: [NgClass, NgIcon, Select],
+  imports: [Tabs, Field, NumberInput, Select, Panel, InfoRow, StatGrid, Stat, Button],
   providers: [FormStore],
 })
 export class Form {
   public form = inject(FormStore);
+
+  public tabs: TabOption<'LONG' | 'SHORT'>[] = [
+    { value: 'LONG', label: 'Kup / Long', icon: 'lucideTrendingUp' },
+    { value: 'SHORT', label: 'Sprzedaj / Short', icon: 'lucideTrendingDown' },
+  ];
 
   public options: SelectOption[] = [
     { value: 'PRICE', label: 'Cena' },
