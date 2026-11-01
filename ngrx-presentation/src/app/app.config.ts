@@ -7,12 +7,21 @@ import {
   lucideTrendingUp,
   lucideCircleDollarSign,
   lucideEdit,
+  lucidePlus,
+  lucideMinus,
 } from '@ng-icons/lucide';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
-    provideIcons({ lucideTrendingDown, lucideTrendingUp, lucideCircleDollarSign, lucideEdit }),
+    provideIcons({
+      lucideTrendingDown,
+      lucideTrendingUp,
+      lucideCircleDollarSign,
+      lucideEdit,
+      lucidePlus,
+      lucideMinus,
+    }),
   ],
 };
