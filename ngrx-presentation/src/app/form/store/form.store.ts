@@ -1,4 +1,5 @@
-import { patchState, signalStore, withMethods, withState } from '@ngrx/signals';
+import { computed } from '@angular/core';
+import { patchState, signalStore, withComputed, withMethods, withState } from '@ngrx/signals';
 
 export type Side = 'BUY' | 'SELL';
 export type ValueType = 'TOKENS' | 'USD';
@@ -7,20 +8,45 @@ type FormStoreState = {
   selectedTab: Side;
   selectedType: ValueType;
   value: number;
-  tokens: number;
-  usd: number;
+  marketPrice: number;
 };
 
 const initialState: FormStoreState = {
   selectedTab: 'BUY',
   selectedType: 'TOKENS',
   value: 0,
-  tokens: 0,
-  usd: 0,
+  marketPrice: 10,
 };
 
 export const FormStore = signalStore(
   withState(initialState),
+  withComputed(({ selectedTab, selectedType, value, marketPrice }) => {
+    /**
+     * Entered value converted to tokens
+     */
+    const tokens = computed(() =>
+      selectedType() === 'TOKENS' ? value() : value() / marketPrice(),
+    );
+
+    /**
+     * Entered value converted to USD
+     */
+    const usd = computed(() => tokens() * marketPrice());
+
+    /**
+     * Whether the submit button is disabled
+     */
+    const disabled = computed(() => value() <= 0);
+
+    /**
+     * Label of the submit button
+     */
+    const submitLabel = computed(() =>
+      selectedTab() === 'BUY' ? 'Kup NGP Coin' : 'Sprzedaj NGP Coin',
+    );
+
+    return { tokens, usd, disabled, submitLabel };
+  }),
   withMethods((store) => {
     /**
      * Selects a given tab in form
@@ -30,26 +56,23 @@ export const FormStore = signalStore(
     };
 
     /**
-     * Selects a type of the entered value
+     * Selects a type of the entered value and converts the value to it,
+     * because 100 tokens means something else than 100 USD
      */
     const setType = (selectedType: ValueType) => {
-      patchState(store, { selectedType });
+      const converted = {
+        TOKENS: store.tokens(),
+        USD: store.usd(),
+      };
+
+      patchState(store, { selectedType, value: converted[selectedType] });
     };
 
     /**
-     * Sets the entered value in the currently selected type
+     * Sets the entered value
      */
     const setValue = (value: number) => {
       patchState(store, { value });
-
-      switch (store.selectedType()) {
-        case 'TOKENS':
-          patchState(store, { tokens: value });
-          break;
-        case 'USD':
-          patchState(store, { usd: value });
-          break;
-      }
     };
 
     /**

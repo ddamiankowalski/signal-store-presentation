@@ -15,9 +15,16 @@
 </app-field>
 
 <app-panel>
-  <app-info-row icon="lucideTrendingUpDown" label="Kurs NGP Coin" unit="USD" [value]="0" />
+  <app-info-row
+    icon="lucideTrendingUpDown"
+    label="Kurs NGP Coin"
+    unit="USD"
+    [value]="form.marketPrice()"
+  />
 
   <app-stat-grid [tokens]="form.tokens()" [usd]="form.usd()" />
 </app-panel>
 
-<button appButton icon="lucideCircleDollarSign">Kup NGP Coin</button>
+<button appButton icon="lucideCircleDollarSign" [disabled]="form.disabled()">
+  {{ form.submitLabel() }}
+</button>
