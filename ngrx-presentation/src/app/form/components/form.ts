@@ -14,8 +14,8 @@ export class Form {
   public form = inject(FormStore);
 
   public options: SelectOption[] = [
-    { value: 'PRICE', label: 'Cena ($)' },
-    { value: 'PROFIT', label: 'Zysk ($)' },
+    { value: 'PRICE', label: 'Cena' },
+    { value: 'PROFIT', label: 'Zysk (USD)' },
     { value: 'PERCENTAGE', label: 'Procent (%)' },
   ];
 

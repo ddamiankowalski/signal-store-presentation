@@ -10,6 +10,8 @@ import {
   lucidePlus,
   lucideMinus,
   lucideChevronDown,
+  lucideWallet,
+  lucideTrendingUpDown,
 } from '@ng-icons/lucide';
 
 export const appConfig: ApplicationConfig = {
@@ -24,6 +26,8 @@ export const appConfig: ApplicationConfig = {
       lucidePlus,
       lucideMinus,
       lucideChevronDown,
+      lucideWallet,
+      lucideTrendingUpDown,
     }),
   ],
 };

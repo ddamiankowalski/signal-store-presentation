@@ -61,7 +61,41 @@
     </div>
   </div>
 
-  <section class="flex w-full rounded-xl bg-surface-container">price section</section>
+  <section class="flex gap-2 flex-col justify-between w-full p-4 rounded-xl bg-surface-container">
+    <div class="flex justify-between">
+      <div class="flex items-center">
+        <div
+          class="flex items-center justify-center p-4 rounded-lg bg-surface-container-high text-primary"
+        >
+          <ng-icon name="lucideWallet" size="18" />
+        </div>
+
+        <p class="text-on-surface-variant mx-2 flex items-center">Dostępne środki</p>
+      </div>
+
+      <div class="flex items-center">
+        <p>1200 <span>USD</span></p>
+      </div>
+    </div>
+
+    <div class="h-px bg-outline-variant"></div>
+
+    <div class="flex justify-between">
+      <div class="flex items-center">
+        <div
+          class="flex items-center justify-center p-4 rounded-lg bg-surface-container-high text-primary"
+        >
+          <ng-icon name="lucideTrendingUpDown" size="18" />
+        </div>
+
+        <p class="text-on-surface-variant mx-2 flex items-center">Ostatnia cena</p>
+      </div>
+
+      <div class="flex items-center">
+        <p>1.52420</p>
+      </div>
+    </div>
+  </section>
 
   <button
     class="flex items-center justify-center gap-2 focus-visible:outline-4 focus-visible:outline-primary/50 w-full font-semibold text-lg cursor-pointer bg-primary hover:bg-primary-hover active:bg-primary-active transition-colors px-16 py-4 text-on-primary rounded-xl"
