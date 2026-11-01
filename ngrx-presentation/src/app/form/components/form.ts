@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { FormStore, Side, ValueType } from '../store/form.store';
 import { Select, SelectOption } from './select/select';
 import { TabOption, Tabs } from './tabs/tabs';
 import { Field } from './field/field';
@@ -13,15 +14,19 @@ import { Button } from './button/button';
   host: { class: 'flex flex-col gap-4 w-full' },
   templateUrl: 'form.html',
   imports: [Tabs, Field, FormInput, Select, Panel, InfoRow, StatGrid, Button],
+  providers: [FormStore],
 })
 export class Form {
-  public tabs: TabOption<'BUY' | 'SELL'>[] = [
-    { value: 'BUY', label: 'Kup', icon: 'lucideTrendingUp' },
-    { value: 'SELL', label: 'Sprzedaj', icon: 'lucideTrendingDown' },
+  public form = inject(FormStore);
+
+  public tabs: TabOption<Side>[] = [
+    { value: 'LONG', label: 'Kup / Long', icon: 'lucideTrendingUp' },
+    { value: 'SHORT', label: 'Sprzedaj / Short', icon: 'lucideTrendingDown' },
   ];
 
-  public options: SelectOption[] = [
-    { value: 'TOKENS', label: 'Żetony' },
-    { value: 'USD', label: 'USD' },
+  public options: SelectOption<ValueType>[] = [
+    { value: 'PRICE', label: 'Cena' },
+    { value: 'PROFIT', label: 'Wartość (USD)' },
+    { value: 'PERCENTAGE', label: 'Procent (%)' },
   ];
 }
