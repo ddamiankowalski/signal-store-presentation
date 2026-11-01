@@ -5,7 +5,7 @@ import { NgIcon } from '@ng-icons/core';
   selector: 'button[appButton]',
   host: {
     class:
-      'flex items-center justify-center gap-2 focus-visible:outline-4 focus-visible:outline-primary/50 w-full font-semibold text-lg cursor-pointer bg-primary hover:bg-primary-hover active:bg-primary-active transition-colors px-4 py-4 text-on-primary rounded-xl',
+      'flex items-center justify-center gap-2 focus-visible:outline-4 focus-visible:outline-primary/50 w-full font-semibold text-lg cursor-pointer bg-primary hover:bg-primary-hover active:bg-primary-active transition-colors px-4 py-4 text-on-primary rounded-xl disabled:opacity-50 disabled:cursor-not-allowed disabled:bg-primary',
   },
   imports: [NgIcon],
   template: `

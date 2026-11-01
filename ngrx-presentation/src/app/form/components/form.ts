@@ -1,5 +1,4 @@
-import { Component, inject } from '@angular/core';
-import { FormStore } from '../store/form.store';
+import { Component } from '@angular/core';
 import { Select, SelectOption } from './select/select';
 import { TabOption, Tabs } from './tabs/tabs';
 import { Field } from './field/field';
@@ -14,11 +13,8 @@ import { Button } from './button/button';
   host: { class: 'flex flex-col gap-4 w-full' },
   templateUrl: 'form.html',
   imports: [Tabs, Field, FormInput, Select, Panel, InfoRow, StatGrid, Button],
-  providers: [FormStore],
 })
 export class Form {
-  public form = inject(FormStore);
-
   public tabs: TabOption<'LONG' | 'SHORT'>[] = [
     { value: 'LONG', label: 'Kup / Long', icon: 'lucideTrendingUp' },
     { value: 'SHORT', label: 'Sprzedaj / Short', icon: 'lucideTrendingDown' },
@@ -29,8 +25,4 @@ export class Form {
     { value: 'PROFIT', label: 'Zysk (USD)' },
     { value: 'PERCENTAGE', label: 'Procent (%)' },
   ];
-
-  public onTab(type: 'LONG' | 'SHORT'): void {
-    this.form.setTab(type);
-  }
 }

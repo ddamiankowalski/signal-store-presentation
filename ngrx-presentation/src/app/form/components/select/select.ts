@@ -1,8 +1,8 @@
 import { Component, computed, input, model } from '@angular/core';
 import { NgIcon } from '@ng-icons/core';
 
-export type SelectOption = {
-  value: string;
+export type SelectOption<T extends string = string> = {
+  value: T;
   label: string;
 };
 
@@ -64,7 +64,7 @@ export type SelectOption = {
     }
   `,
 })
-export class Select {
+export class Select<T extends string> {
   /**
    * Id of the select
    */
@@ -73,12 +73,12 @@ export class Select {
   /**
    * Available options
    */
-  public options = input.required<SelectOption[]>();
+  public options = input.required<SelectOption<T>[]>();
 
   /**
    * Currently selected value
    */
-  public value = model<string | null>();
+  public value = model.required<T>();
 
   /**
    * Label of the currently selected option
@@ -88,6 +88,6 @@ export class Select {
   );
 
   public onChange(event: Event): void {
-    this.value.set((event.target as HTMLSelectElement).value);
+    this.value.set((event.target as HTMLSelectElement).value as T);
   }
 }

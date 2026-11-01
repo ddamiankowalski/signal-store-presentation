@@ -1,10 +1,11 @@
 import { Component, input } from '@angular/core';
+import { DecimalPipe } from '@angular/common';
 import { NgIcon } from '@ng-icons/core';
 
 @Component({
   selector: 'app-info-row',
   host: { class: 'flex justify-between gap-2' },
-  imports: [NgIcon],
+  imports: [NgIcon, DecimalPipe],
   template: `
     <div class="flex items-center">
       <div
@@ -18,7 +19,7 @@ import { NgIcon } from '@ng-icons/core';
 
     <div class="flex items-center">
       <p>
-        <ng-content />
+        {{ value() | number: '1.2-2' }}
         @if (unit(); as unit) {
           <span class="text-on-surface-variant">{{ unit }}</span>
         }
@@ -36,6 +37,11 @@ export class InfoRow {
    * Label describing the value
    */
   public label = input.required<string>();
+
+  /**
+   * Displayed value
+   */
+  public value = input.required<number>();
 
   /**
    * Unit displayed after the value

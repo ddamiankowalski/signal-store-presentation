@@ -1,14 +1,15 @@
 import { Component, input } from '@angular/core';
+import { DecimalPipe } from '@angular/common';
 import { Stat } from '../stat/stat';
 
 @Component({
   selector: 'app-stat-grid',
   host: { class: 'grid grid-cols-3 gap-2 font-semibold' },
-  imports: [Stat],
+  imports: [Stat, DecimalPipe],
   template: `
-    <app-stat label="Cena">{{ price() }}</app-stat>
-    <app-stat label="Zysk (USD)">{{ profit() }}</app-stat>
-    <app-stat label="Procent (%)">{{ percent() }}</app-stat>
+    <app-stat label="Cena">{{ price() | number: '1.2-2' }}</app-stat>
+    <app-stat label="Zysk (USD)">{{ profit() | number: '1.2-2' }}</app-stat>
+    <app-stat label="Procent (%)">{{ percent() | number: '1.2-2' }}</app-stat>
   `,
 })
 export class StatGrid {

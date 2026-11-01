@@ -1,13 +1,13 @@
-<app-tabs [options]="tabs" [value]="form.selectedTab()" (valueChange)="onTab($event)" />
+<app-tabs [options]="tabs" value="LONG" />
 
 <app-field label="Wartość zlecenia" icon="lucideEdit" inputId="price">
   <app-form-input />
-  <app-select [options]="options" [value]="form.selectedType()" />
+  <app-select [options]="options" value="PRICE" />
 </app-field>
 
 <app-panel>
-  <app-info-row icon="lucideWallet" label="Dostępne środki" unit="USD">1200</app-info-row>
-  <app-info-row icon="lucideTrendingUpDown" label="Ostatnia cena">0.00</app-info-row>
+  <app-info-row icon="lucideWallet" label="Dostępne środki" unit="USD" [value]="1200" />
+  <app-info-row icon="lucideTrendingUpDown" label="Ostatnia cena" [value]="0" />
 
   <app-stat-grid [price]="0" [profit]="0" [percent]="0" />
 </app-panel>

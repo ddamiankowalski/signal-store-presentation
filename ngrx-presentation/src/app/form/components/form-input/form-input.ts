@@ -18,6 +18,7 @@ import { NgIcon } from '@ng-icons/core';
       id="price"
       [value]="value()"
       (input)="onInput($event)"
+      (keydown.enter)="confirm.emit()"
       type="number"
       class="min-w-0 flex-1 appearance-none bg-transparent text-left px-4 text-lg outline-none transition-colors hover:text-on-surface focus:text-on-surface"
     />
@@ -46,6 +47,11 @@ export class FormInput {
    * Emitted when the minus button is clicked
    */
   public decrement = output<void>();
+
+  /**
+   * Emitted when Enter is pressed in the input
+   */
+  public confirm = output<void>();
 
   public onInput(event: Event): void {
     const { valueAsNumber } = event.target as HTMLInputElement;
