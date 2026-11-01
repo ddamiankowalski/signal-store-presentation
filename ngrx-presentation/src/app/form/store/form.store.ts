@@ -1,5 +1,15 @@
-import { computed } from '@angular/core';
-import { patchState, signalStore, withComputed, withMethods, withState } from '@ngrx/signals';
+import { computed, inject } from '@angular/core';
+import {
+  patchState,
+  signalStore,
+  withComputed,
+  withHooks,
+  withMethods,
+  withState,
+} from '@ngrx/signals';
+import { rxMethod } from '@ngrx/signals/rxjs-interop';
+import { tap } from 'rxjs';
+import { QuotesService } from '../services/quotes.service';
 
 export type Side = 'BUY' | 'SELL';
 export type ValueType = 'TOKENS' | 'USD';
@@ -89,12 +99,26 @@ export const FormStore = signalStore(
       setValue(store.value() - 1);
     };
 
+    /**
+     * Keeps the market price in sync with the given quotes stream
+     */
+    const connectQuotes = rxMethod<number>(
+      tap((marketPrice) => patchState(store, { marketPrice })),
+    );
+
     return {
       setTab,
       setType,
       setValue,
       increment,
       decrement,
+      connectQuotes,
     };
+  }),
+  withHooks({
+    onInit(store) {
+      // The subscription ends together with the store, so no manual cleanup is needed
+      store.connectQuotes(inject(QuotesService).quotes$);
+    },
   }),
 );
