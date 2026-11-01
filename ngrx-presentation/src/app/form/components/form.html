@@ -1,36 +1,46 @@
-<section class="w-140">
+<section class="flex flex-col gap-4 w-140">
   <div role="tablist" class="flex gap-2 bg-surface-container rounded-xl">
     @let tab = form.selectedTab();
 
     <button
       (click)="onTab('LONG')"
       role="tab"
-      class="focus-visible:outline-4 focus-visible:outline-primary/50 w-full flex-1 cursor-pointer font-semibold text-lg transition-colors py-2 rounded-lg"
+      class="flex justify-center gap-2 items-center focus-visible:outline-4 focus-visible:outline-primary/50 w-full flex-1 cursor-pointer font-semibold text-lg transition-colors py-2 rounded-lg"
       [ngClass]="{
         'text-on-primary bg-primary hover:bg-primary-hover active:bg-primary-active':
           tab === 'LONG',
         'text-on-surface-variant': tab !== 'LONG',
       }"
     >
+      <ng-icon name="lucideTrendingUp" size="18" />
       Kup / Long
     </button>
     <button
       (click)="onTab('SHORT')"
       role="tab"
-      class="focus-visible:outline-4 focus-visible:outline-primary/50 w-full flex-1 cursor-pointer font-semibold text-lg transition-colors py-2 rounded-lg"
+      class="flex justify-center gap-2 items-center focus-visible:outline-4 focus-visible:outline-primary/50 w-full flex-1 cursor-pointer font-semibold text-lg transition-colors py-2 rounded-lg"
       [ngClass]="{
         'text-on-primary bg-primary hover:bg-primary-hover active:bg-primary-active':
           tab === 'SHORT',
         'text-on-surface-variant': tab !== 'SHORT',
       }"
     >
+      <ng-icon name="lucideTrendingDown" size="18" />
       Sprzedaj / Short
     </button>
   </div>
 
+  <div class="flex flex-col text-on-surface-variant text-sm font-semibold">
+    <label class="flex items-center gap-1">
+      <ng-icon name="lucideEdit" size="14" />
+      Wartość zlecenia</label
+    >
+  </div>
+
   <button
-    class="focus-visible:outline-4 focus-visible:outline-primary/50 w-full font-semibold text-lg cursor-pointer bg-primary hover:bg-primary-hover active:bg-primary-active transition-colors px-16 py-4 text-on-primary rounded-xl"
+    class="flex items-center justify-center gap-2 focus-visible:outline-4 focus-visible:outline-primary/50 w-full font-semibold text-lg cursor-pointer bg-primary hover:bg-primary-hover active:bg-primary-active transition-colors px-16 py-4 text-on-primary rounded-xl"
   >
+    <ng-icon name="lucideCircleDollarSign" size="18" />
     Złóż zlecenie kupna
   </button>
 </section>
