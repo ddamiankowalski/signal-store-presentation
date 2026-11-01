@@ -36,24 +36,28 @@
       Wartość zlecenia</label
     >
 
-    <div class="flex w-full rounded-xl bg-surface-container p-2">
-      <button
-        class="flex items-center justify-center rounded-lg hover:bg-surface-container-highest focus-visible:outline-4 focus-visible:outline-surface-container-highest cursor-pointer p-4 bg-surface-container-high"
-      >
-        <ng-icon name="lucideMinus" size="18" />
-      </button>
+    <div class="flex gap-2 w-full rounded-xl bg-surface-container p-2">
+      <div class="flex flex-1">
+        <button
+          class="flex items-center justify-center rounded-lg hover:bg-surface-container-highest focus-visible:outline-4 focus-visible:outline-surface-container-highest cursor-pointer p-4 bg-surface-container-high"
+        >
+          <ng-icon name="lucideMinus" size="18" />
+        </button>
 
-      <input
-        id="price"
-        type="number"
-        class="min-w-0 flex-1 appearance-none bg-transparent text-left px-4 text-lg outline-none"
-      />
+        <input
+          id="price"
+          type="number"
+          class="min-w-0 flex-1 appearance-none bg-transparent text-left px-4 text-lg outline-none"
+        />
 
-      <button
-        class="flex items-center justify-center rounded-lg hover:bg-surface-container-highest focus-visible:outline-4 focus-visible:outline-surface-container-highest cursor-pointer p-4 bg-surface-container-high"
-      >
-        <ng-icon name="lucidePlus" size="18" />
-      </button>
+        <button
+          class="flex items-center justify-center rounded-lg hover:bg-surface-container-highest focus-visible:outline-4 focus-visible:outline-surface-container-highest cursor-pointer p-4 bg-surface-container-high"
+        >
+          <ng-icon name="lucidePlus" size="18" />
+        </button>
+      </div>
+
+      <app-select [options]="options" [value]="form.selectedType()" />
     </div>
   </div>
 
