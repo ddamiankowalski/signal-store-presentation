@@ -8,15 +8,16 @@ export type SelectOption = {
 
 @Component({
   selector: 'app-select',
+  host: { class: 'flex' },
   imports: [NgIcon],
   template: `
     <select
       [id]="id()"
       [value]="value()"
       (change)="onChange($event)"
-      class="h-full cursor-pointer rounded-lg bg-surface-container-high px-4 text-lg text-on-surface transition-[background-color,color] hover:bg-surface-container-highest focus-visible:outline-4 focus-visible:outline-surface-container-highest"
+      class="h-full w-full cursor-pointer rounded-lg bg-surface-container-high px-4 py-3 text-lg text-on-surface transition-[background-color,color] hover:bg-surface-container-highest focus-visible:outline-4 focus-visible:outline-surface-container-highest"
     >
-      <button class="flex h-full items-center gap-2">
+      <button class="flex h-full w-full items-center justify-between gap-2">
         <span>{{ selectedLabel() }}</span>
         <ng-icon name="lucideChevronDown" size="18" class="chevron transition-transform" />
       </button>

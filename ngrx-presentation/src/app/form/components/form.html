@@ -1,11 +1,12 @@
-<section class="flex flex-col gap-4 w-140">
+<section class="flex flex-col gap-4 w-full">
   <div role="tablist" class="flex gap-2 bg-surface-container rounded-xl">
     @let tab = form.selectedTab();
 
     <button
       (click)="onTab('LONG')"
+      aria-label="Kup / Long"
       role="tab"
-      class="flex justify-center gap-2 items-center focus-visible:outline-4 focus-visible:outline-primary/50 w-full flex-1 cursor-pointer font-semibold text-lg transition-colors py-2 rounded-lg"
+      class="flex justify-center gap-2 items-center focus-visible:outline-4 focus-visible:outline-primary/50 w-full flex-1 cursor-pointer font-semibold text-base sm:text-lg text-nowrap transition-colors py-2 rounded-lg"
       [ngClass]="{
         'text-on-primary bg-primary hover:bg-primary-hover active:bg-primary-active':
           tab === 'LONG',
@@ -13,12 +14,13 @@
       }"
     >
       <ng-icon name="lucideTrendingUp" size="18" />
-      Kup / Long
+      <span class="hidden sm:inline">Kup / Long</span>
     </button>
     <button
       (click)="onTab('SHORT')"
+      aria-label="Sprzedaj / Short"
       role="tab"
-      class="flex justify-center gap-2 items-center focus-visible:outline-4 focus-visible:outline-primary/50 w-full flex-1 cursor-pointer font-semibold text-lg transition-colors py-2 rounded-lg"
+      class="flex justify-center gap-2 items-center focus-visible:outline-4 focus-visible:outline-primary/50 w-full flex-1 cursor-pointer font-semibold text-base sm:text-lg text-nowrap transition-colors py-2 rounded-lg"
       [ngClass]="{
         'text-on-primary bg-primary hover:bg-primary-hover active:bg-primary-active':
           tab === 'SHORT',
@@ -26,7 +28,7 @@
       }"
     >
       <ng-icon name="lucideTrendingDown" size="18" />
-      Sprzedaj / Short
+      <span class="hidden sm:inline">Sprzedaj / Short</span>
     </button>
   </div>
 
@@ -36,7 +38,7 @@
       Wartość zlecenia</label
     >
 
-    <div class="flex gap-2 w-full rounded-xl bg-surface-container p-2">
+    <div class="flex flex-col sm:flex-row gap-2 w-full rounded-xl bg-surface-container p-2">
       <div class="flex flex-1">
         <button
           class="flex items-center justify-center rounded-lg hover:bg-surface-container-highest focus-visible:outline-4 focus-visible:outline-surface-container-highest cursor-pointer p-4 bg-surface-container-high"
@@ -47,7 +49,7 @@
         <input
           id="price"
           type="number"
-          class="min-w-0 flex-1 appearance-none bg-transparent text-left px-4 text-lg outline-none"
+          class="min-w-0 flex-1 appearance-none bg-transparent text-left px-4 text-lg outline-none transition-colors hover:text-on-surface focus:text-on-surface"
         />
 
         <button
@@ -62,7 +64,7 @@
   </div>
 
   <section class="flex gap-2 flex-col justify-between w-full p-4 rounded-xl bg-surface-container">
-    <div class="flex justify-between">
+    <div class="flex justify-between gap-2">
       <div class="flex items-center">
         <div
           class="flex items-center justify-center p-4 rounded-lg bg-surface-container-high text-primary"
@@ -74,13 +76,13 @@
       </div>
 
       <div class="flex items-center">
-        <p>1200 <span>USD</span></p>
+        <p>1200 <span class="text-on-surface-variant">USD</span></p>
       </div>
     </div>
 
     <div class="h-px bg-outline-variant"></div>
 
-    <div class="flex justify-between">
+    <div class="flex justify-between gap-2">
       <div class="flex items-center">
         <div
           class="flex items-center justify-center p-4 rounded-lg bg-surface-container-high text-primary"
@@ -98,7 +100,7 @@
   </section>
 
   <button
-    class="flex items-center justify-center gap-2 focus-visible:outline-4 focus-visible:outline-primary/50 w-full font-semibold text-lg cursor-pointer bg-primary hover:bg-primary-hover active:bg-primary-active transition-colors px-16 py-4 text-on-primary rounded-xl"
+    class="flex items-center justify-center gap-2 focus-visible:outline-4 focus-visible:outline-primary/50 w-full font-semibold text-lg cursor-pointer bg-primary hover:bg-primary-hover active:bg-primary-active transition-colors px-4 py-4 text-on-primary rounded-xl"
   >
     <ng-icon name="lucideCircleDollarSign" size="18" />
     Złóż zlecenie kupna
