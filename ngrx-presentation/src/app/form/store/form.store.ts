@@ -1,6 +1,8 @@
-import { computed } from '@angular/core';
+import { computed, inject } from '@angular/core';
 import { signalStore, withComputed, withState } from '@ngrx/signals';
-import { on, withReducer } from '@ngrx/signals/events';
+import { Events, on, withEventHandlers, withReducer } from '@ngrx/signals/events';
+import { tap } from 'rxjs';
+import { MarketService } from '../services/market.service';
 import { events } from './form.events';
 import { onTabSelected, onTypeSelected, onInput, onIncreased, onDecreased } from './form.reducers';
 import { withQuotations } from './with-quotations.feature';
@@ -57,4 +59,7 @@ export const FormStore = signalStore(
     on(events.increased, onIncreased),
     on(events.decreased, onDecreased),
   ),
+  withEventHandlers((_, dispatched = inject(Events), market = inject(MarketService)) => ({
+    order$: dispatched.on(events.ordered).pipe(tap(() => market.order())),
+  })),
 );

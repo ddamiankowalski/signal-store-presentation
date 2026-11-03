@@ -10,5 +10,6 @@ export const events = eventGroup({
     input: type<number>(),
     increased: type<void>(),
     decreased: type<void>(),
+    ordered: type<void>(),
   },
 });

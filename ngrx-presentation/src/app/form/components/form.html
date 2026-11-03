@@ -29,6 +29,11 @@
   <app-stat-grid [tokens]="form.tokens()" [usd]="form.usd()" />
 </app-panel>
 
-<button appButton icon="lucideCircleDollarSign" [disabled]="form.disabled()" (click)="form.order()">
+<button
+  appButton
+  icon="lucideCircleDollarSign"
+  [disabled]="form.disabled()"
+  (click)="dispatch.ordered()"
+>
   {{ form.submitLabel() }}
 </button>
