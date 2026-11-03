@@ -22,7 +22,7 @@ export class Form {
 
   public options: SelectOption[] = [
     { value: 'PRICE', label: 'Cena' },
-    { value: 'PROFIT', label: 'Zysk (USD)' },
+    { value: 'PROFIT', label: 'Wartość (USD)' },
     { value: 'PERCENTAGE', label: 'Procent (%)' },
   ];
 }

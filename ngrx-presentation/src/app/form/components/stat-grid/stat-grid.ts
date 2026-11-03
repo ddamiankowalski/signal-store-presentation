@@ -8,7 +8,7 @@ import { Stat } from '../stat/stat';
   imports: [Stat, DecimalPipe],
   template: `
     <app-stat label="Cena">{{ price() | number: '1.2-2' }}</app-stat>
-    <app-stat label="Zysk (USD)">{{ profit() | number: '1.2-2' }}</app-stat>
+    <app-stat label="Wartość (USD)">{{ profit() | number: '1.2-2' }}</app-stat>
     <app-stat label="Procent (%)">{{ percent() | number: '1.2-2' }}</app-stat>
   `,
 })
