@@ -9,7 +9,7 @@ import {
 } from '@ngrx/signals';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { tap } from 'rxjs';
-import { QuotesService } from '../services/quotes.service';
+import { MarketService } from '../services/market.service';
 
 export type Side = 'BUY' | 'SELL';
 export type ValueType = 'TOKENS' | 'USD';
@@ -57,7 +57,7 @@ export const FormStore = signalStore(
 
     return { tokens, usd, disabled, submitLabel };
   }),
-  withMethods((store) => {
+  withMethods((store, market = inject(MarketService)) => {
     /**
      * Selects a given tab in form
      */
@@ -104,6 +104,13 @@ export const FormStore = signalStore(
      */
     const _fetchQuotes = rxMethod<number>(tap((marketPrice) => patchState(store, { marketPrice })));
 
+    /**
+     * Places an order
+     */
+    const order = () => {
+      market.order();
+    };
+
     return {
       setTab,
       setType,
@@ -111,11 +118,12 @@ export const FormStore = signalStore(
       increment,
       decrement,
       _fetchQuotes,
+      order,
     };
   }),
   withHooks({
     onInit(store) {
-      const service = inject(QuotesService);
+      const service = inject(MarketService);
       store._fetchQuotes(service.quotes$);
     },
   }),
