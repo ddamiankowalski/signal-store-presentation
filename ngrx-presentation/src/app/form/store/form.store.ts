@@ -1,15 +1,7 @@
 import { computed, inject } from '@angular/core';
-import {
-  patchState,
-  signalStore,
-  withComputed,
-  withHooks,
-  withMethods,
-  withState,
-} from '@ngrx/signals';
-import { rxMethod } from '@ngrx/signals/rxjs-interop';
-import { tap } from 'rxjs';
+import { patchState, signalStore, withComputed, withMethods, withState } from '@ngrx/signals';
 import { MarketService } from '../services/market.service';
+import { withQuotations } from './with-quotations.feature';
 
 export type Side = 'BUY' | 'SELL';
 export type ValueType = 'TOKENS' | 'USD';
@@ -18,18 +10,17 @@ type FormStoreState = {
   selectedTab: Side;
   selectedType: ValueType;
   value: number;
-  marketPrice: number;
 };
 
 const initialState: FormStoreState = {
   selectedTab: 'BUY',
   selectedType: 'TOKENS',
   value: 0,
-  marketPrice: 10,
 };
 
 export const FormStore = signalStore(
   withState(initialState),
+  withQuotations(),
   withComputed(({ selectedTab, selectedType, value, marketPrice }) => {
     /**
      * Entered value converted to tokens
@@ -100,11 +91,6 @@ export const FormStore = signalStore(
     };
 
     /**
-     * Keeps the market price in sync with the given quotes stream
-     */
-    const _fetchQuotes = rxMethod<number>(tap((marketPrice) => patchState(store, { marketPrice })));
-
-    /**
      * Places an order
      */
     const order = () => {
@@ -117,14 +103,7 @@ export const FormStore = signalStore(
       setValue,
       increment,
       decrement,
-      _fetchQuotes,
       order,
     };
-  }),
-  withHooks({
-    onInit(store) {
-      const service = inject(MarketService);
-      store._fetchQuotes(service.quotes$);
-    },
   }),
 );
