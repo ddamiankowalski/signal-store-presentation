@@ -41,7 +41,11 @@ export const FormStore = signalStore(
     /**
      * Sets the entered value in the currently selected type
      */
-    const _setValue = (value: number | null) => {
+    const setValue = (value: number | null) => {
+      if (value === null) {
+        return;
+      }
+
       patchState(store, { value });
 
       switch (store.selectedType()) {
@@ -67,7 +71,7 @@ export const FormStore = signalStore(
         return;
       }
 
-      _setValue(value + 1);
+      setValue(value + 1);
     };
 
     /**
@@ -80,13 +84,13 @@ export const FormStore = signalStore(
         return;
       }
 
-      _setValue(value - 1);
+      setValue(value - 1);
     };
 
     return {
       setTab,
       setType,
-      setValue: _setValue,
+      setValue,
       increment,
       decrement,
     };
