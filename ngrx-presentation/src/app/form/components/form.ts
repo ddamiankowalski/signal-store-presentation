@@ -20,7 +20,6 @@ import { events } from '../store/form.events';
 })
 export class Form {
   public form = inject(FormStore);
-
   public dispatch = injectDispatch(events);
 
   public tabs: TabOption<Side>[] = [
