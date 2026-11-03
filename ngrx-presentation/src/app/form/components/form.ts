@@ -20,13 +20,12 @@ export class Form {
   public form = inject(FormStore);
 
   public tabs: TabOption<Side>[] = [
-    { value: 'LONG', label: 'Kup / Long', icon: 'lucideTrendingUp' },
-    { value: 'SHORT', label: 'Sprzedaj / Short', icon: 'lucideTrendingDown' },
+    { value: 'BUY', label: 'Kup', icon: 'lucideTrendingUp' },
+    { value: 'SELL', label: 'Sprzedaj', icon: 'lucideTrendingDown' },
   ];
 
   public options: SelectOption<ValueType>[] = [
-    { value: 'PRICE', label: 'Cena' },
-    { value: 'PROFIT', label: 'Wartość (USD)' },
-    { value: 'PERCENTAGE', label: 'Procent (%)' },
+    { value: 'TOKENS', label: 'Żetony' },
+    { value: 'USD', label: 'USD' },
   ];
 }

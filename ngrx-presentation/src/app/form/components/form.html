@@ -1,6 +1,6 @@
 <app-tabs [options]="tabs" [value]="form.selectedTab()" (valueChange)="form.setTab($event)" />
 
-<app-field label="Wartość zlecenia" icon="lucideEdit" inputId="price">
+<app-field label="Ilość" icon="lucideEdit" inputId="value">
   <app-form-input
     [value]="form.value()"
     (valueChange)="form.setValue($event)"
@@ -17,7 +17,7 @@
 <app-panel>
   <app-info-row icon="lucideTrendingUpDown" label="Kurs NGP Coin" unit="USD" [value]="0" />
 
-  <app-stat-grid [price]="form.price()" [profit]="form.profit()" [percent]="form.percent()" />
+  <app-stat-grid [tokens]="form.tokens()" [usd]="form.usd()" />
 </app-panel>
 
 <button appButton icon="lucideCircleDollarSign">Kup NGP Coin</button>

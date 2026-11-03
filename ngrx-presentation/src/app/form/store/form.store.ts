@@ -1,24 +1,22 @@
 import { patchState, signalStore, withMethods, withState } from '@ngrx/signals';
 
-export type Side = 'LONG' | 'SHORT';
-export type ValueType = 'PRICE' | 'PROFIT' | 'PERCENTAGE';
+export type Side = 'BUY' | 'SELL';
+export type ValueType = 'TOKENS' | 'USD';
 
 type FormStoreState = {
   selectedTab: Side;
   selectedType: ValueType;
   value: number;
-  price: number;
-  profit: number;
-  percent: number;
+  tokens: number;
+  usd: number;
 };
 
 const initialState: FormStoreState = {
-  selectedTab: 'LONG',
-  selectedType: 'PRICE',
+  selectedTab: 'BUY',
+  selectedType: 'TOKENS',
   value: 0,
-  price: 0,
-  profit: 0,
-  percent: 0,
+  tokens: 0,
+  usd: 0,
 };
 
 export const FormStore = signalStore(
@@ -45,14 +43,11 @@ export const FormStore = signalStore(
       patchState(store, { value });
 
       switch (store.selectedType()) {
-        case 'PRICE':
-          patchState(store, { price: value });
+        case 'TOKENS':
+          patchState(store, { tokens: value });
           break;
-        case 'PROFIT':
-          patchState(store, { profit: value });
-          break;
-        case 'PERCENTAGE':
-          patchState(store, { percent: value });
+        case 'USD':
+          patchState(store, { usd: value });
           break;
       }
     };
