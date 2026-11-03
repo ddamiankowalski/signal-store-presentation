@@ -1,7 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { injectDispatch } from '@ngrx/signals/events';
 import { FormStore, Side, ValueType } from '../store/form.store';
-import { formEvents } from '../store/form.events';
 import { Select, SelectOption } from './select/select';
 import { TabOption, Tabs } from './tabs/tabs';
 import { Field } from './field/field';
@@ -10,6 +9,7 @@ import { Panel } from './panel/panel';
 import { InfoRow } from './info-row/info-row';
 import { StatGrid } from './stat-grid/stat-grid';
 import { Button } from './button/button';
+import { events } from '../store/form.events';
 
 @Component({
   selector: 'app-form',
@@ -21,7 +21,7 @@ import { Button } from './button/button';
 export class Form {
   public form = inject(FormStore);
 
-  public dispatch = injectDispatch(formEvents);
+  public dispatch = injectDispatch(events);
 
   public tabs: TabOption<Side>[] = [
     { value: 'BUY', label: 'Kup', icon: 'lucideTrendingUp' },

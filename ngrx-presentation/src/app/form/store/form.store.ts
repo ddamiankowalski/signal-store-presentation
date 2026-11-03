@@ -1,7 +1,7 @@
 import { computed } from '@angular/core';
 import { signalStore, withComputed, withState } from '@ngrx/signals';
 import { on, withReducer } from '@ngrx/signals/events';
-import { formEvents } from './form.events';
+import { events } from './form.events';
 import { withQuotations } from './with-quotations.feature';
 
 export type Side = 'BUY' | 'SELL';
@@ -50,13 +50,13 @@ export const FormStore = signalStore(
     return { tokens, usd, disabled, submitLabel };
   }),
   withReducer(
-    on(formEvents.tabSelected, ({ payload }) => ({ selectedTab: payload })),
-    on(formEvents.typeSelected, ({ payload }, { value, marketPrice }) => ({
+    on(events.tabSelected, ({ payload }) => ({ selectedTab: payload })),
+    on(events.typeSelected, ({ payload }, { value, marketPrice }) => ({
       selectedType: payload,
       value: payload === 'USD' ? value * marketPrice : value / marketPrice,
     })),
-    on(formEvents.valueEntered, ({ payload }) => ({ value: payload })),
-    on(formEvents.valueIncreased, (_, { value }) => ({ value: value + 1 })),
-    on(formEvents.valueDecreased, (_, { value }) => ({ value: value - 1 })),
+    on(events.valueEntered, ({ payload }) => ({ value: payload })),
+    on(events.valueIncreased, (_, { value }) => ({ value: value + 1 })),
+    on(events.valueDecreased, (_, { value }) => ({ value: value - 1 })),
   ),
 );

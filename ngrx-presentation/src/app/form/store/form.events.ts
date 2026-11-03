@@ -2,7 +2,7 @@ import { type } from '@ngrx/signals';
 import { eventGroup } from '@ngrx/signals/events';
 import type { Side, ValueType } from './form.store';
 
-export const formEvents = eventGroup({
+export const events = eventGroup({
   source: 'Form',
   events: {
     tabSelected: type<Side>(),
