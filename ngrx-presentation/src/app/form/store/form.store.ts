@@ -102,9 +102,7 @@ export const FormStore = signalStore(
     /**
      * Keeps the market price in sync with the given quotes stream
      */
-    const connectQuotes = rxMethod<number>(
-      tap((marketPrice) => patchState(store, { marketPrice })),
-    );
+    const _fetchQuotes = rxMethod<number>(tap((marketPrice) => patchState(store, { marketPrice })));
 
     return {
       setTab,
@@ -112,13 +110,13 @@ export const FormStore = signalStore(
       setValue,
       increment,
       decrement,
-      connectQuotes,
+      _fetchQuotes,
     };
   }),
   withHooks({
     onInit(store) {
-      // The subscription ends together with the store, so no manual cleanup is needed
-      store.connectQuotes(inject(QuotesService).quotes$);
+      const service = inject(QuotesService);
+      store._fetchQuotes(service.quotes$);
     },
   }),
 );
