@@ -32,4 +32,8 @@ export class Form {
     { value: 'TOKENS', label: 'Żetony' },
     { value: 'USD', label: 'USD' },
   ];
+
+  public onButtonClick(): void {
+    this.dispatch.ordered();
+  }
 }

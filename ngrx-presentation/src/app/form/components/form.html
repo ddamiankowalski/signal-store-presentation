@@ -33,7 +33,7 @@
   appButton
   icon="lucideCircleDollarSign"
   [disabled]="form.disabled()"
-  (click)="dispatch.ordered()"
+  (click)="onButtonClick()"
 >
   {{ form.submitLabel() }}
 </button>
