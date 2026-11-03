@@ -6,9 +6,6 @@ import { interval, Observable, scan } from 'rxjs';
  */
 @Injectable({ providedIn: 'root' })
 export class QuotesService {
-  /**
-   * Emits a new market price every second
-   */
   public readonly quotes$: Observable<number> = interval(1000).pipe(
     scan((price) => price + (Math.random() - 0.5) / 10, 10),
   );
