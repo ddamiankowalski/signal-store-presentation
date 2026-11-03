@@ -1,6 +1,7 @@
-import { computed, inject } from '@angular/core';
-import { patchState, signalStore, withComputed, withMethods, withState } from '@ngrx/signals';
-import { MarketService } from '../services/market.service';
+import { computed } from '@angular/core';
+import { signalStore, withComputed, withState } from '@ngrx/signals';
+import { on, withReducer } from '@ngrx/signals/events';
+import { formEvents } from './form.events';
 import { withQuotations } from './with-quotations.feature';
 
 export type Side = 'BUY' | 'SELL';
@@ -48,62 +49,14 @@ export const FormStore = signalStore(
 
     return { tokens, usd, disabled, submitLabel };
   }),
-  withMethods((store, market = inject(MarketService)) => {
-    /**
-     * Selects a given tab in form
-     */
-    const setTab = (selectedTab: Side) => {
-      patchState(store, { selectedTab });
-    };
-
-    /**
-     * Selects a type of the entered value and converts the value to it,
-     * because 100 tokens means something else than 100 USD
-     */
-    const setType = (selectedType: ValueType) => {
-      const converted = {
-        TOKENS: store.tokens(),
-        USD: store.usd(),
-      };
-
-      patchState(store, { selectedType, value: converted[selectedType] });
-    };
-
-    /**
-     * Sets the entered value
-     */
-    const setValue = (value: number) => {
-      patchState(store, { value });
-    };
-
-    /**
-     * Increases the entered value by one
-     */
-    const increment = () => {
-      setValue(store.value() + 1);
-    };
-
-    /**
-     * Decreases the entered value by one
-     */
-    const decrement = () => {
-      setValue(store.value() - 1);
-    };
-
-    /**
-     * Places an order
-     */
-    const order = () => {
-      market.order();
-    };
-
-    return {
-      setTab,
-      setType,
-      setValue,
-      increment,
-      decrement,
-      order,
-    };
-  }),
+  withReducer(
+    on(formEvents.tabSelected, ({ payload }) => ({ selectedTab: payload })),
+    on(formEvents.typeSelected, ({ payload }, { value, marketPrice }) => ({
+      selectedType: payload,
+      value: payload === 'USD' ? value * marketPrice : value / marketPrice,
+    })),
+    on(formEvents.valueEntered, ({ payload }) => ({ value: payload })),
+    on(formEvents.valueIncreased, (_, { value }) => ({ value: value + 1 })),
+    on(formEvents.valueDecreased, (_, { value }) => ({ value: value - 1 })),
+  ),
 );

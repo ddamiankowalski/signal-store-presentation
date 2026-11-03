@@ -1,16 +1,20 @@
-<app-tabs [options]="tabs" [value]="form.selectedTab()" (valueChange)="form.setTab($event)" />
+<app-tabs
+  [options]="tabs"
+  [value]="form.selectedTab()"
+  (valueChange)="dispatch.tabSelected($event)"
+/>
 
 <app-field label="Ilość" icon="lucideEdit" inputId="value">
   <app-form-input
     [value]="form.value()"
-    (valueChange)="form.setValue($event)"
-    (increment)="form.increment()"
-    (decrement)="form.decrement()"
+    (valueChange)="dispatch.valueEntered($event)"
+    (increment)="dispatch.valueIncreased()"
+    (decrement)="dispatch.valueDecreased()"
   />
   <app-select
     [options]="options"
     [value]="form.selectedType()"
-    (valueChange)="form.setType($event)"
+    (valueChange)="dispatch.typeSelected($event)"
   />
 </app-field>
 

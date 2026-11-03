@@ -1,5 +1,7 @@
 import { Component, inject } from '@angular/core';
+import { injectDispatch } from '@ngrx/signals/events';
 import { FormStore, Side, ValueType } from '../store/form.store';
+import { formEvents } from '../store/form.events';
 import { Select, SelectOption } from './select/select';
 import { TabOption, Tabs } from './tabs/tabs';
 import { Field } from './field/field';
@@ -18,6 +20,8 @@ import { Button } from './button/button';
 })
 export class Form {
   public form = inject(FormStore);
+
+  public dispatch = injectDispatch(formEvents);
 
   public tabs: TabOption<Side>[] = [
     { value: 'BUY', label: 'Kup', icon: 'lucideTrendingUp' },
