@@ -6,7 +6,7 @@ export type ValueType = 'PRICE' | 'PROFIT' | 'PERCENTAGE';
 type FormStoreState = {
   selectedTab: Side;
   selectedType: ValueType;
-  value: number | null;
+  value: number;
   price: number;
   profit: number;
   percent: number;
@@ -15,7 +15,7 @@ type FormStoreState = {
 const initialState: FormStoreState = {
   selectedTab: 'LONG',
   selectedType: 'PRICE',
-  value: null,
+  value: 0,
   price: 0,
   profit: 0,
   percent: 0,
@@ -61,26 +61,14 @@ export const FormStore = signalStore(
      * Increases the entered value by one
      */
     const increment = () => {
-      const value = store.value();
-
-      if (value === null) {
-        return;
-      }
-
-      setValue(value + 1);
+      setValue(store.value() + 1);
     };
 
     /**
      * Decreases the entered value by one
      */
     const decrement = () => {
-      const value = store.value();
-
-      if (value === null) {
-        return;
-      }
-
-      setValue(value - 1);
+      setValue(store.value() - 1);
     };
 
     return {
