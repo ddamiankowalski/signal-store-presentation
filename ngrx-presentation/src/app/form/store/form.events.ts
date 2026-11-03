@@ -7,8 +7,8 @@ export const events = eventGroup({
   events: {
     tabSelected: type<Side>(),
     typeSelected: type<ValueType>(),
-    valueEntered: type<number>(),
-    valueIncreased: type<void>(),
-    valueDecreased: type<void>(),
+    value: type<number>(),
+    increased: type<void>(),
+    decreased: type<void>(),
   },
 });

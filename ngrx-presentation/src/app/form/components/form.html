@@ -7,9 +7,9 @@
 <app-field label="Ilość" icon="lucideEdit" inputId="value">
   <app-form-input
     [value]="form.value()"
-    (valueChange)="dispatch.valueEntered($event)"
-    (increment)="dispatch.valueIncreased()"
-    (decrement)="dispatch.valueDecreased()"
+    (valueChange)="dispatch.value($event)"
+    (increment)="dispatch.increased()"
+    (decrement)="dispatch.decreased()"
   />
   <app-select
     [options]="options"
