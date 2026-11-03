@@ -15,14 +15,13 @@ import { Button } from './button/button';
   imports: [Tabs, Field, FormInput, Select, Panel, InfoRow, StatGrid, Button],
 })
 export class Form {
-  public tabs: TabOption<'LONG' | 'SHORT'>[] = [
-    { value: 'LONG', label: 'Kup / Long', icon: 'lucideTrendingUp' },
-    { value: 'SHORT', label: 'Sprzedaj / Short', icon: 'lucideTrendingDown' },
+  public tabs: TabOption<'BUY' | 'SELL'>[] = [
+    { value: 'BUY', label: 'Kup', icon: 'lucideTrendingUp' },
+    { value: 'SELL', label: 'Sprzedaj', icon: 'lucideTrendingDown' },
   ];
 
   public options: SelectOption[] = [
-    { value: 'PRICE', label: 'Cena' },
-    { value: 'PROFIT', label: 'Wartość (USD)' },
-    { value: 'PERCENTAGE', label: 'Procent (%)' },
+    { value: 'TOKENS', label: 'Żetony' },
+    { value: 'USD', label: 'USD' },
   ];
 }

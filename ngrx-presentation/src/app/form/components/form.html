@@ -1,15 +1,14 @@
-<app-tabs [options]="tabs" value="LONG" />
+<app-tabs [options]="tabs" value="BUY" />
 
-<app-field label="Wartość zlecenia" icon="lucideEdit" inputId="price">
+<app-field label="Ilość" icon="lucideEdit" inputId="value">
   <app-form-input />
-  <app-select [options]="options" value="PRICE" />
+  <app-select [options]="options" value="TOKENS" />
 </app-field>
 
 <app-panel>
-  <app-info-row icon="lucideWallet" label="Dostępne środki" unit="USD" [value]="1200" />
-  <app-info-row icon="lucideTrendingUpDown" label="Ostatnia cena" [value]="0" />
+  <app-info-row icon="lucideTrendingUpDown" label="Kurs NGP Coin" unit="USD" [value]="0" />
 
-  <app-stat-grid [price]="0" [profit]="0" [percent]="0" />
+  <app-stat-grid [tokens]="0" [usd]="0" />
 </app-panel>
 
-<button appButton icon="lucideCircleDollarSign">Złóż zlecenie kupna</button>
+<button appButton icon="lucideCircleDollarSign">Kup NGP Coin</button>

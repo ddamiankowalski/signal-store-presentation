@@ -1,30 +1,23 @@
 import { Component, input } from '@angular/core';
-import { DecimalPipe } from '@angular/common';
 import { Stat } from '../stat/stat';
 
 @Component({
   selector: 'app-stat-grid',
-  host: { class: 'grid grid-cols-3 gap-2 font-semibold' },
-  imports: [Stat, DecimalPipe],
+  host: { class: 'grid grid-cols-2 gap-2 font-semibold' },
+  imports: [Stat],
   template: `
-    <app-stat label="Cena">{{ price() | number: '1.2-2' }}</app-stat>
-    <app-stat label="Wartość (USD)">{{ profit() | number: '1.2-2' }}</app-stat>
-    <app-stat label="Procent (%)">{{ percent() | number: '1.2-2' }}</app-stat>
+    <app-stat label="Żetony">{{ tokens().toFixed(2) }}</app-stat>
+    <app-stat label="Kwota (USD)">{{ usd().toFixed(2) }}</app-stat>
   `,
 })
 export class StatGrid {
   /**
-   * Value expressed as price
+   * Amount expressed in tokens
    */
-  public price = input.required<number>();
+  public tokens = input.required<number>();
 
   /**
-   * Value expressed as profit in USD
+   * Amount expressed in USD
    */
-  public profit = input.required<number>();
-
-  /**
-   * Value expressed as percentage
-   */
-  public percent = input.required<number>();
+  public usd = input.required<number>();
 }

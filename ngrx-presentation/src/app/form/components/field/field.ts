@@ -16,10 +16,6 @@ import { NgIcon } from '@ng-icons/core';
     <div class="flex flex-col sm:flex-row gap-2 w-full rounded-xl bg-surface-container p-2">
       <ng-content />
     </div>
-
-    @if (error(); as error) {
-      <p role="alert" class="mt-2 text-sell-short">{{ error }}</p>
-    }
   `,
 })
 export class Field {
@@ -37,9 +33,4 @@ export class Field {
    * Id of the input the label points to
    */
   public inputId = input<string>();
-
-  /**
-   * Error message displayed below the field
-   */
-  public error = input<string | null>();
 }
