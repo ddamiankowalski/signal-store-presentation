@@ -41,22 +41,18 @@ export const FormStore = signalStore(
     /**
      * Sets the entered value in the currently selected type
      */
-    const setValue = (value: number | null) => {
-      if (value === null) {
-        return;
-      }
-
+    const setValue = (value: number) => {
       patchState(store, { value });
 
       switch (store.selectedType()) {
         case 'PRICE':
-          patchState(store, { price: value ?? 0 });
+          patchState(store, { price: value });
           break;
         case 'PROFIT':
-          patchState(store, { profit: value ?? 0 });
+          patchState(store, { profit: value });
           break;
         case 'PERCENTAGE':
-          patchState(store, { percent: value ?? 0 });
+          patchState(store, { percent: value });
           break;
       }
     };
