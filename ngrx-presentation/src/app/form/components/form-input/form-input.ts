@@ -1,4 +1,4 @@
-import { Component, model, output } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { NgIcon } from '@ng-icons/core';
 
 @Component({
@@ -36,7 +36,12 @@ export class FormInput {
   /**
    * Current value
    */
-  public value = model<number | null>(null);
+  public value = input<number | null>(null);
+
+  /**
+   * Emitted when a valid number is entered
+   */
+  public valueChange = output<number>();
 
   /**
    * Emitted when the plus button is clicked
@@ -55,6 +60,11 @@ export class FormInput {
 
   public onInput(event: Event): void {
     const { valueAsNumber } = event.target as HTMLInputElement;
-    this.value.set(Number.isNaN(valueAsNumber) ? null : valueAsNumber);
+
+    if (Number.isNaN(valueAsNumber)) {
+      return;
+    }
+
+    this.valueChange.emit(valueAsNumber);
   }
 }
