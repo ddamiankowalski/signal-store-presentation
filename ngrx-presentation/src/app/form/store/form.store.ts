@@ -2,7 +2,7 @@ import { computed } from '@angular/core';
 import { signalStore, withComputed, withState } from '@ngrx/signals';
 import { on, withReducer } from '@ngrx/signals/events';
 import { events } from './form.events';
-import { onTabSelected, onTypeSelected, onValue, onIncreased, onDecreased } from './form.reducers';
+import { onTabSelected, onTypeSelected, onInput, onIncreased, onDecreased } from './form.reducers';
 import { withQuotations } from './with-quotations.feature';
 
 export type Side = 'BUY' | 'SELL';
@@ -53,7 +53,7 @@ export const FormStore = signalStore(
   withReducer(
     on(events.tabSelected, onTabSelected),
     on(events.typeSelected, onTypeSelected),
-    on(events.value, onValue),
+    on(events.input, onInput),
     on(events.increased, onIncreased),
     on(events.decreased, onDecreased),
   ),

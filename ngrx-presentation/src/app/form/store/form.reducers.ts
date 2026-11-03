@@ -20,7 +20,7 @@ export const onTypeSelected = (
 /**
  * Sets the entered value
  */
-export const onValue = ({ payload }: { payload: number }) => ({ value: payload });
+export const onInput = ({ payload }: { payload: number }) => ({ value: payload });
 
 /**
  * Increases the entered value by one
