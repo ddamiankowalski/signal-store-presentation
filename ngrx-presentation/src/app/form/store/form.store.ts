@@ -4,7 +4,6 @@ import { Events, on, withEventHandlers, withReducer } from '@ngrx/signals/events
 import { tap } from 'rxjs';
 import { MarketService } from '../services/market.service';
 import { events } from './form.events';
-import { onTabSelected, onTypeSelected, onInput, onIncreased, onDecreased } from './form.reducers';
 import { withQuotations } from './with-quotations.feature';
 
 export type Side = 'BUY' | 'SELL';
@@ -53,11 +52,34 @@ export const FormStore = signalStore(
     return { tokens, usd, disabled, submitLabel };
   }),
   withReducer(
-    on(events.tabSelected, onTabSelected),
-    on(events.typeSelected, onTypeSelected),
-    on(events.input, onInput),
-    on(events.increased, onIncreased),
-    on(events.decreased, onDecreased),
+    /**
+     * Selects a given tab in form
+     */
+    on(events.tabSelected, ({ payload }) => ({ selectedTab: payload })),
+
+    /**
+     * Selects a type of the entered value and converts the value to it,
+     * because 100 tokens means something else than 100 USD
+     */
+    on(events.typeSelected, ({ payload }, { value, marketPrice }) => ({
+      selectedType: payload,
+      value: payload === 'USD' ? value * marketPrice : value / marketPrice,
+    })),
+
+    /**
+     * Sets the entered value
+     */
+    on(events.input, ({ payload }) => ({ value: payload })),
+
+    /**
+     * Increases the entered value by one
+     */
+    on(events.increased, (_, { value }) => ({ value: value + 1 })),
+
+    /**
+     * Decreases the entered value by one
+     */
+    on(events.decreased, (_, { value }) => ({ value: value - 1 })),
   ),
   withEventHandlers((_, dispatched = inject(Events), market = inject(MarketService)) => ({
     order$: dispatched.on(events.ordered).pipe(tap(() => market.order())),
